@@ -1,0 +1,27 @@
+@import '../../styles/mixins.scss';
+
+.page-wrapper {
+  margin: 0 auto;
+  max-width: 990px;
+
+  header {
+    margin-bottom: 1rem;
+  }
+
+  main {
+    padding-top: 1rem;
+  }
+}
+
+.app-container {
+  @include desktop {
+    display: grid;
+    gap: var(--grid-base--x4);
+    grid-template-columns: 1fr 377px;
+    margin: 0 var(--grid-base--x3);
+  }
+
+  @include tablet {
+    gap: var(--grid-base--x8);
+  }
+}

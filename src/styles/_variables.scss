@@ -1,0 +1,9 @@
+:root {
+  --grid-base: 0.25rem;
+  --grid-base--x2: calc(var(--grid-base) * 2);
+  --grid-base--x4: calc(var(--grid-base) * 4);
+  --grid-base--x6: calc(var(--grid-base) * 6);
+  --grid-base--x8: calc(var(--grid-base) * 8);
+  --color-grey: hsl(0deg 0% 53%);
+  --color-text: #1f2442;
+}
