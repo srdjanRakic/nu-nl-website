@@ -89,7 +89,6 @@ your-repo-name/
 │   ├── components/
 │   ├── hooks/
 │   ├── styles/
-│   ├── App.tsx
 │   ├── main.tsx
 │   └── vite-env.d.ts
 ├── .eslintrc.js
