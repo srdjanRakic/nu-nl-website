@@ -1,8 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import useFetchNews from '../../hooks/useFetchNews';
-import { NewsData } from '../../hooks/useFetchNews';
 import { Mock, describe, expect, it, vi } from 'vitest';
-import { AppContainer } from './AppContainer';
+import { Home } from './Home';
+import { NewsData, useFetchNews } from '../hooks';
 
 vi.mock('../../hooks/useFetchNews');
 
@@ -21,14 +20,14 @@ const mockNewsData: NewsData[] = [
   },
 ];
 
-describe('AppContainer component', () => {
+describe('Home page', () => {
   it('renders the current date and news header', () => {
     (useFetchNews as Mock).mockReturnValue({
       data: mockNewsData,
       error: null,
     });
 
-    render(<AppContainer />);
+    render(<Home />);
 
     const currentDate = new Date();
     const options: Intl.DateTimeFormatOptions = {
@@ -50,7 +49,7 @@ describe('AppContainer component', () => {
       error: 'Failed to fetch news',
     });
 
-    render(<AppContainer />);
+    render(<Home />);
 
     expect(screen.getByText('Error: Failed to fetch news')).toBeInTheDocument();
   });

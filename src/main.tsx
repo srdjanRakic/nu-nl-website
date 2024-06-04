@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import AppContainer from './components/AppContainer';
+import Home from './pages';
 import ErrorBoundary from './components/ErrorBoundary';
 import './styles/main.scss';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ErrorBoundary>
-      <AppContainer />
+      <Home />
     </ErrorBoundary>
   </React.StrictMode>
 );

@@ -1,21 +1,22 @@
-import { useFetchNews } from '../../hooks';
-import GeneralNewsList from '../GeneralNewsList';
-import LatestNews from '../LatestNews';
-import './app-container.scss';
 
-export const AppContainer = () => {
+import GeneralNewsList from '../components/GeneralNewsList';
+import LatestNews from '../components/LatestNews';
+import { useFetchNews } from '../hooks';
+import "./home.scss";
+
+export const Home = () => {
   const { data: news, error } = useFetchNews();
 
   const currentDate = new Date();
 
   const options: Intl.DateTimeFormatOptions = {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
   };
 
-  const formattedDate = currentDate.toLocaleDateString('en-US', options);
+  const formattedDate = currentDate.toLocaleDateString("en-US", options);
 
   return (
     <div className="page-wrapper">
