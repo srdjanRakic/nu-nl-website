@@ -6,7 +6,7 @@ interface Props {
   item: NewsData;
 }
 
-const NewsItem: FC<Props> = ({ item }) => {
+export const NewsFeedItem: FC<Props> = ({ item }) => {
   const formattedTime = useFormattedTime(item.timestamp);
 
   return (
@@ -23,5 +23,3 @@ const NewsItem: FC<Props> = ({ item }) => {
     </li>
   );
 };
-
-export default NewsItem;

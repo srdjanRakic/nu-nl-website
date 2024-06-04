@@ -17,7 +17,7 @@ const breakpoints = [
   { width: screenSize.xsmall, items: 6 },
 ];
 
-export const GeneralNewsList: FC<Props> = ({ news }) => {
+export const NewsList: FC<Props> = ({ news }) => {
   const [loading, setLoading] = useState(true);
   const { data } = useSortByPopularity(news);
   const itemsToShow = useResponsiveItems(breakpoints);

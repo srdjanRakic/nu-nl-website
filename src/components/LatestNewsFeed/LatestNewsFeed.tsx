@@ -3,7 +3,7 @@ import { useSortByDate, NewsData } from '../../hooks';
 import ArrowIcon from '../ArrowIcon';
 import useResponsiveItems, { screenSize } from "../../hooks/useResponsiveItems";
 import './latest-news.scss';
-import NewsItem from './NewsItem';
+import { NewsFeedItem } from "./NewsFeedItem";
 import { Divider } from './Divider';
 
 interface Props {
@@ -15,7 +15,7 @@ const breakpoints = [
   { width: screenSize.small, items: 6 },
 ];
 
-export const LatestNews: FC<Props> = ({ news }) => {
+export const LatestNewsFeed: FC<Props> = ({ news }) => {
   const { data } = useSortByDate(news);
   const itemsToShow = useResponsiveItems(breakpoints);
   const [showMore, setShowMore] = useState(false);
@@ -25,7 +25,7 @@ export const LatestNews: FC<Props> = ({ news }) => {
   const renderNewsItems = (startIndex: number, endIndex: number) =>
     data
       .slice(startIndex, endIndex)
-      .map((item, index) => <NewsItem key={index} item={item} />);
+      .map((item, index) => <NewsFeedItem key={index} item={item} />);
 
   return (
     <section className="news-container">
@@ -52,5 +52,3 @@ export const LatestNews: FC<Props> = ({ news }) => {
     </section>
   );
 };
-
-export default LatestNews;

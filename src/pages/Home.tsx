@@ -1,6 +1,6 @@
 
-import GeneralNewsList from '../components/GeneralNewsList';
-import LatestNews from '../components/LatestNews';
+import NewsList from "../components/NewsList";
+import LatestNewsFeed from "../components/LatestNewsFeed";
 import { useFetchNews } from '../hooks';
 import "./home.scss";
 
@@ -28,10 +28,10 @@ export const Home = () => {
         {news && (
           <div className="app-container">
             <section>
-              <GeneralNewsList news={news} />
+              <NewsList news={news} />
             </section>
             <aside>
-              <LatestNews news={news} />
+              <LatestNewsFeed news={news} />
             </aside>
           </div>
         )}

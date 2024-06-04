@@ -2,7 +2,7 @@ import { render, screen, act } from "@testing-library/react";
 import { NewsData } from "../../hooks/useFetchNews";
 import IkeaImg from "../../assets/ikea-img.jpg";
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
-import { GeneralNewsList } from './GeneralNewsList';
+import { NewsList } from "./NewsList";
 
 vi.mock("../../hooks/useSortByPopularity", () => ({
   __esModule: true,
@@ -55,14 +55,14 @@ describe("GeneralNewsList", () => {
   });
 
   it("renders the loading skeleton initially", () => {
-    render(<GeneralNewsList news={mockNewsData} />);
+    render(<NewsList news={mockNewsData} />);
 
     const loadingSkeletons = screen.getAllByTestId('loading-line');
     expect(loadingSkeletons.length).toBeGreaterThan(0);
   });
 
   it("renders the most popular news as a hero article after loading", () => {
-    render(<GeneralNewsList news={mockNewsData} />);
+    render(<NewsList news={mockNewsData} />);
 
     act(() => {
       vi.advanceTimersByTime(2000);
@@ -74,7 +74,7 @@ describe("GeneralNewsList", () => {
   });
 
   it("renders a list of news articles after loading", () => {
-    render(<GeneralNewsList news={mockNewsData} />);
+    render(<NewsList news={mockNewsData} />);
 
     act(() => {
       vi.advanceTimersByTime(2000);
@@ -89,7 +89,7 @@ describe("GeneralNewsList", () => {
   });
 
   it("returns null if there is no most popular news", () => {
-    render(<GeneralNewsList news={[]} />);
+    render(<NewsList news={[]} />);
 
     act(() => {
       vi.advanceTimersByTime(2000);
