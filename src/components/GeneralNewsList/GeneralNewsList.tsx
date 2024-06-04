@@ -19,8 +19,6 @@ export const GeneralNewsList: FC<Props> = ({ news }) => {
 
   const itemsToShow = useResponsiveItems(breakpoints);
 
-  console.log(data);
-
   const mostPopularNewsArticle = data[0];
 
   if (!mostPopularNewsArticle) return null;
