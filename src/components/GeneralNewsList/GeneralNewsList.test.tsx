@@ -1,17 +1,17 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from "@testing-library/react";
+import { NewsData } from "../../hooks/useFetchNews";
+import IkeaImg from "../../assets/ikea-img.jpg";
+import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 import { GeneralNewsList } from './GeneralNewsList';
-import { NewsData } from '../../hooks/useFetchNews';
-import IkeaImg from '../../assets/ikea-img.jpg';
-import { describe, expect, it, vi } from 'vitest';
 
-vi.mock('../../hooks/useSortByPopularity', () => ({
+vi.mock("../../hooks/useSortByPopularity", () => ({
   __esModule: true,
   default: (news: NewsData[]) => ({
     data: news.sort((a, b) => b.popularity - a.popularity),
   }),
 }));
 
-vi.mock('../Image', () => ({
+vi.mock("../Image", () => ({
   __esModule: true,
   default: ({
     alt,
@@ -26,38 +26,61 @@ vi.mock('../Image', () => ({
 
 const mockNewsData: NewsData[] = [
   {
-    id: '1',
-    title: 'News 1',
+    id: "1",
+    title: "News 1",
     popularity: 0.9,
-    timestamp: '2023-02-16T07:39:55.793Z',
+    timestamp: "2023-02-16T07:39:55.793Z",
   },
   {
-    id: '2',
-    title: 'News 2',
+    id: "2",
+    title: "News 2",
     popularity: 0.8,
-    timestamp: '2023-02-16T07:39:55.793Z',
+    timestamp: "2023-02-16T07:39:55.793Z",
   },
   {
-    id: '3',
-    title: 'News 3',
+    id: "3",
+    title: "News 3",
     popularity: 0.7,
-    timestamp: '2023-02-16T07:39:55.793Z',
+    timestamp: "2023-02-16T07:39:55.793Z",
   },
 ];
 
-describe('GeneralNewsList', () => {
-  it('renders the most popular news as a hero article', () => {
-    render(<GeneralNewsList news={mockNewsData} />);
-
-    const heroImage = screen.getByAltText('News 1');
-    expect(heroImage).toBeInTheDocument();
-    expect(heroImage).toHaveAttribute('src', IkeaImg);
+describe("GeneralNewsList", () => {
+  beforeAll(() => {
+    vi.useFakeTimers();
   });
 
-  it('renders a list of news articles', () => {
+  afterAll(() => {
+    vi.useRealTimers();
+  });
+
+  it("renders the loading skeleton initially", () => {
     render(<GeneralNewsList news={mockNewsData} />);
 
-    const articles = screen.getAllByRole('listitem');
+    const loadingSkeletons = screen.getAllByTestId('loading-line');
+    expect(loadingSkeletons.length).toBeGreaterThan(0);
+  });
+
+  it("renders the most popular news as a hero article after loading", () => {
+    render(<GeneralNewsList news={mockNewsData} />);
+
+    act(() => {
+      vi.advanceTimersByTime(2000);
+    });
+
+    const heroImage = screen.getByAltText("News 1");
+    expect(heroImage).toBeInTheDocument();
+    expect(heroImage).toHaveAttribute("src", IkeaImg);
+  });
+
+  it("renders a list of news articles after loading", () => {
+    render(<GeneralNewsList news={mockNewsData} />);
+
+    act(() => {
+      vi.advanceTimersByTime(2000);
+    });
+
+    const articles = screen.getAllByRole("listitem");
     expect(articles).toHaveLength(mockNewsData.length);
 
     mockNewsData.forEach((newsItem) => {
@@ -65,10 +88,14 @@ describe('GeneralNewsList', () => {
     });
   });
 
-  it('returns null if there is no most popular news', () => {
+  it("returns null if there is no most popular news", () => {
     render(<GeneralNewsList news={[]} />);
 
-    const heroImage = screen.queryByAltText('News 1');
+    act(() => {
+      vi.advanceTimersByTime(2000);
+    });
+
+    const heroImage = screen.queryByAltText("News 1");
     expect(heroImage).not.toBeInTheDocument();
   });
 });
