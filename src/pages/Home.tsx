@@ -23,7 +23,7 @@ export const Home = () => {
       <header>
         <p>{formattedDate} | The latest news first on NU.nl</p>
       </header>
-      <main>
+      <main role="main">
         {error && <p>Error: {error}</p>}
         {news && (
           <div className="app-container">

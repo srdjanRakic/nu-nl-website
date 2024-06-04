@@ -3,7 +3,7 @@ import { Mock, describe, expect, it, vi } from 'vitest';
 import { Home } from './Home';
 import { NewsData, useFetchNews } from '../hooks';
 
-vi.mock('../../hooks/useFetchNews');
+vi.mock('../hooks/useFetchNews');
 
 const mockNewsData: NewsData[] = [
   {
