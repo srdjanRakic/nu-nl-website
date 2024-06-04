@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { useSortByDate, NewsData } from '../../hooks';
 import ArrowIcon from '../ArrowIcon';
-import useResponsiveItems from '../../hooks/useResponsiveItems';
+import useResponsiveItems, { screenSize } from "../../hooks/useResponsiveItems";
 import './latest-news.scss';
 import NewsItem from './NewsItem';
 import { Divider } from './Divider';
@@ -11,9 +11,8 @@ interface Props {
 }
 
 const breakpoints = [
-  { width: 1200, items: 8 },
-  { width: 768, items: 6 },
-  { width: 0, items: 4 },
+  { width: screenSize.large, items: 8 },
+  { width: screenSize.small, items: 6 },
 ];
 
 export const LatestNews: FC<Props> = ({ news }) => {

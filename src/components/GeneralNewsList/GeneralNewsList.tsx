@@ -2,16 +2,15 @@ import { FC } from 'react';
 import Image from '../Image';
 import { useSortByPopularity, NewsData, useResponsiveItems } from '../../hooks';
 import IkeaImg from '../../assets/ikea-img.jpg';
-import './news-list.scss';
-
+import { screenSize } from '../../hooks/useResponsiveItems';
+import "./news-list.scss";
 interface Props {
   news: NewsData[];
 }
 
 const breakpoints = [
-  { width: 1200, items: 12 },
-  { width: 768, items: 10 },
-  { width: 0, items: 6 },
+  { width: screenSize.large, items: 12 },
+  { width: screenSize.small, items: 10 },
 ];
 
 export const GeneralNewsList: FC<Props> = ({ news }) => {

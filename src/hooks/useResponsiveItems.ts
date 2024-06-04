@@ -5,11 +5,19 @@ interface Breakpoint {
   items: number;
 }
 
+export const screenSize = {
+  xlarge: 1920,
+  large: 1200,
+  medium: 1024,
+  small: 768,
+  xsmall: 480,
+};
+
 const useResponsiveItems = (breakpoints: Breakpoint[]) => {
   const [itemsToShow, setItemsToShow] = useState(() => {
     const defaultItems =
       breakpoints.find((b) => window.innerWidth >= b.width)?.items ||
-      breakpoints[breakpoints.length - 1].items;
+      breakpoints[breakpoints.length - 1].items; // If no breakpoints match, use the items count from the last breakpoint
 
     return defaultItems;
   });
