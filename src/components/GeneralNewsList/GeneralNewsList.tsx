@@ -13,7 +13,8 @@ interface Props {
 
 const breakpoints = [
   { width: screenSize.large, items: 12 },
-  { width: screenSize.small, items: 10 },
+  { width: screenSize.small, items: 8 },
+  { width: screenSize.xsmall, items: 6 },
 ];
 
 export const GeneralNewsList: FC<Props> = ({ news }) => {
